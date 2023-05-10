@@ -12,7 +12,7 @@ export default function AppNavBar() {
         </a>
       </Box>
       <Box sx={styles.navBarButtonsBox}>
-        <Button size="medium" href="/shop/kids" color="inherit" sx={styles.navBarButton}>Kids</Button>
+        <Button size="medium" href="shop/kids" color="inherit" sx={styles.navBarButton}>Kids</Button>
         <Button size="medium" href="/shop/women" color="inherit" sx={styles.navBarButton}>Women</Button>
         <Button size="medium" href="/shop/men" color="inherit" sx={styles.navBarButton}>Men</Button>
       </Box>

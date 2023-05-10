@@ -29,7 +29,7 @@ export default function Home() {
             <Typography variant="body2" align="left" style={styles.description}>
               {kidsShoeCollectionDescription}
             </Typography>
-              <Button variant="contained" href="/shop/kids" style={styles.button}>
+              <Button variant="contained" href="shop/kids" style={styles.button}>
                 Shop Kids
               </Button>
           </div>
