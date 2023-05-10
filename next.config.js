@@ -3,6 +3,8 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  basePath: '/evershop-clone',
+  assetPrefix: '/evershop-clone/',
   output: 'export',
   async generateStaticParams() {
     return {
