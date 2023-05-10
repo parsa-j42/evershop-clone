@@ -22,8 +22,9 @@ export default function DropDownSelect({title, options, color,sx}) {
           onChange={handleChange}
           color={color} sx={sx}
         >
-          {options.map((option) => (
-            <MenuItem
+          {options.map((option, index) => (
+            <MenuItem 
+              key={index} 
               value={option}
               color={color}
             >{option}</MenuItem>
