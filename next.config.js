@@ -4,9 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   output: 'export',
-  exportPathMap: async function (defaultPathMap) {
+  async generateStaticParams() {
     return {
-      ...defaultPathMap,
       '/shop/kids': { page: '/shop/kids' }
     };
   }
