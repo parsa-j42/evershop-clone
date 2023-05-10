@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/evershop-clone',
   experimental: {
     appDir: true,
   },
-  basePath: '/evershop-clone',
-  assetPrefix: '/evershop-clone/',
   output: 'export',
   async generateStaticParams() {
     return {
