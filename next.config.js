@@ -4,6 +4,12 @@ const nextConfig = {
     appDir: true,
   },
   output: 'export',
+  exportPathMap: async function (defaultPathMap) {
+    return {
+      ...defaultPathMap,
+      '/shop/kids': { page: '/shop/kids' }
+    };
+  }
 }
 
 module.exports = nextConfig
