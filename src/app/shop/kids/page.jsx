@@ -1,5 +1,5 @@
 "use client";
-import { ThemeProvider, Typography, Box, Grid, Slider, Divider } from "@mui/material";
+import { ThemeProvider, Typography, Box, Grid, Slider, Divider, Hidden, Container } from "@mui/material";
 import { theme } from "../../utils/theme";
 import AppNavBar from "../../components/staticComponents/AppNavBar/AppNavBar";
 import AppFooter from "../../components/staticComponents/AppFooter/AppFooter";
@@ -17,6 +17,7 @@ export default function shopForKids() {
           </Typography>
         </Box>
         <Grid container sx={styles.container}>
+        <Hidden mdDown>
           <Grid item xs={3} sx={styles.filterContainer}>
             <Typography variant="h6" gutterBottom>
               Shop By
@@ -59,18 +60,21 @@ export default function shopForKids() {
             />
             <Divider sx={styles.filterDivider} />
           </Grid>
+          </Hidden>
           <Grid
-            item
-            xs={9}
+            sm={12}
+            md={9}
             sx={styles.productContainer}
             justifyContent="flex-end"
           >
+            <Container>
             <DropDownSelect
               title="Sort By"
               options={sortByOptions}
               color="neutral"
               sx={styles.DropDownSelect}
             />
+            </Container>
             <ProductsList products={products} />
           </Grid>
         </Grid>
@@ -103,10 +107,10 @@ const styles = {
   },
   filterContainer: {
     paddingRight: 4,
-    borderRight: "1px solid #ccc",
+    // borderRight: "1px solid #ccc",
   },
   productContainer: {
-    paddingLeft: 4,
+    // paddingLeft: 4,
   },
   filterDivider: {
     borderBottom: "1px solid #BDBDBD",
@@ -116,6 +120,7 @@ const styles = {
   DropDownSelect: {
     width: 180,
     marginBottom: 2,
+    
   },
 };
 
