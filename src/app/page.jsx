@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { ThemeProvider, Typography, Box, Button } from '@mui/material';
+import { ThemeProvider, Typography, Box, Button, Grid, Container } from '@mui/material';
 import { theme } from "./utils/theme";
 import mainBanner from '../../public/mainBanner.png';
 import AppNavBar from './components/staticComponents/AppNavBar/AppNavBar'
@@ -20,44 +20,54 @@ export default function Home() {
       <main className="min-h-screen flex-col items-center justify-between">
         <AppNavBar/>
         <Image sx={styles.Banner} src={mainBanner} alt="Main Banner" layout="responsive" />
-        <section style={styles.section}>
-          <div>
-            <Image src={kidsShoeCollection} alt="Kids Shoe Collection" width={300} height={300} style={styles.image} />
-            <Typography variant="h6" component="h2" align="left" style={styles.shoeTitle}>
-              Kids Shoes Collection
-            </Typography>
-            <Typography variant="body2" align="left" style={styles.description}>
-              {kidsShoeCollectionDescription}
-            </Typography>
-              <Button variant="contained" href="shop/kids" style={styles.button}>
+        <Container sx={styles.section}>
+        <div>
+        <Grid container spacing={0} justifyContent="center" alignItems="center">
+          <Grid item s={12} lg={4}>
+            <div style={styles.container}>
+              <Image src={kidsShoeCollection} alt="Kids Shoe Collection" width={350} height={350} style={styles.productImage} />
+              <Typography variant="h6" component="h2" align="left" sx={styles.shoeTitle}>
+                Kids Shoes Collection
+              </Typography>
+              <Typography variant="body2" align="left" sx={styles.description}>
+                {kidsShoeCollectionDescription}
+              </Typography>
+              <Button variant="contained" href="shop/kids" sx={styles.button}>
                 Shop Kids
               </Button>
-          </div>
-          <div>
-            <Image src={womenShoeCollection} alt="Women Shoe Collection" width={300} height={300} style={styles.image} />
-            <Typography variant="h6" component="h2" align="left" style={styles.shoeTitle}>
-              Women Shoes Collection
-            </Typography>
-            <Typography variant="body2" align="left" style={styles.description}>
-              {womenShoeCollectionDescription}
-            </Typography>
-              <Button variant="contained" href="/shop/women" style={styles.button}>
+            </div>
+          </Grid>
+          <Grid item s={12} lg={4}>
+            <div style={styles.container}>
+              <Image src={womenShoeCollection} alt="Women Shoe Collection" width={350} height={350} style={styles.productImage} />
+              <Typography variant="h6" component="h2" align="left" sx={styles.shoeTitle}>
+                Women Shoes Collection
+              </Typography>
+              <Typography variant="body2" align="left" sx={styles.description}>
+                {womenShoeCollectionDescription}
+              </Typography>
+              <Button variant="contained" href="/shop/women" sx={styles.button}>
                 Shop Women
               </Button>
-          </div>
-          <div>
-            <Image src={menCollection} alt="Men Collection" width={300} height={300} style={styles.image} />
-            <Typography variant="h6" component="h2" align="left" style={styles.shoeTitle}>
-              Men Shoes Collection
-            </Typography>
-            <Typography variant="body2" align="left" style={styles.description}>
-              {menShoeCollectionDescription}
-            </Typography>
-              <Button variant="contained" href="/shop/men" style={styles.button}>
+            </div>
+          </Grid>
+          <Grid item s={12} lg={4}>
+            <div style={styles.container}>
+              <Image src={menCollection} alt="Men Collection" width={350} height={350} style={styles.productImage} />
+              <Typography variant="h6" component="h2" align="left" sx={styles.shoeTitle}>
+                Men Shoes Collection
+              </Typography>
+              <Typography variant="body2" align="left" sx={styles.description}>
+                {menShoeCollectionDescription}
+              </Typography>
+              <Button variant="contained" href="/shop/men" sx={styles.button}>
                 Shop Men
               </Button>
-          </div>
-        </section>
+            </div>
+          </Grid>
+        </Grid>
+        </div>
+        </Container>
         <section style={styles.section}>
           <div style={styles.featuredProductsContainer}>
             <Typography variant="h5" component="h2" align="center" sx={styles.title}>
@@ -120,9 +130,14 @@ export default function Home() {
 const styles = {
   banner: {
   },
-  section: {
+  container: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'center'
+  }, 
+  section: {
     paddingTop: '2rem',
     paddingBottom: '2rem',
   },
@@ -168,8 +183,8 @@ const styles = {
     margin: '0 1rem',
   },
   productImage: {
-    width: '250px',
-    height: '250px',
+    // width: '250px',
+    // height: '250px',
     marginBottom: '0.5rem',
   },
   productName: {
