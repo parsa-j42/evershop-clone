@@ -90,17 +90,13 @@ const styles = {
     marginBottom: 2,
     marginLeft: "auto",
     marginRight: "auto",
-    // width: "56vw",
     height: "20vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
     textAlign: "left",    width: "56vw",
-    // '@media (max-width: 600px)': {
-    //   width: '90vw',
-    // },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: "80vw",}
   },
   container: {
@@ -108,20 +104,16 @@ const styles = {
     marginLeft: "auto",
     marginRight: "auto",
     width: "56vw",
-    // '@media (max-width: 600px)': {
-    //   width: '90vw',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: "80vw",
     },
     flexGrow: 1,
   },
   filterContainer: {
     paddingRight: 4,
-    // borderRight: "1px solid #ccc",
     display: { xs: "none", md: "block" },
   },
   productContainer: {
-    // paddingLeft: 4,
     justifyContent: "center",
     textAlign: "center",
  },

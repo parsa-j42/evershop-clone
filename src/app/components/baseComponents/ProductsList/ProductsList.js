@@ -1,5 +1,5 @@
 import { Box, Grid, Card, CardActionArea, CardMedia, CardContent, Typography, Container } from "@mui/material";
-import zoomPegasusShoes from '../../../../../public/zoomPegasusShoes.png';
+import zoomPegasusShoes from 'public/zoomPegasusShoes.png';
 import Image from 'next/image';
 import { theme } from "src/app/utils/theme.js";
 
@@ -10,20 +10,24 @@ export default function Products({ products }) {
         <Grid item key={product.name} s={12} md={6} lg={4}>
           <Card sx={{
             height: "100%",
-            // '@media (max-width: 600px)': {
-            //   width: '90vw',
-            // },
-            [theme.breakpoints.down('sm')]: {
-              width: "80vw",}
+            [theme.breakpoints.down('md')]: {
+              width: "80vw",
+            }
           }}>
             <CardActionArea>
-              {/* <CardMedia
-                component="img"
-                height="200"
-                image={zoomPegasusShoes}
-                alt={product.name}
-              /> */}
-              <Image src={product.img} alt={product.name} />
+              <CardMedia sx={{
+                [theme.breakpoints.down('md')]: {
+                  width: "80vw",
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }
+              }}>
+                <Image src={product.img} alt={product.name} />
+              </CardMedia>
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                   {product.name}
