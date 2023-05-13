@@ -51,7 +51,7 @@ const styles = {
     justifyContent: 'center',
   },
   navBarButton: {
-    mx: 1,
+    // mx: 1,
   },
   iconsBox: {
     display: 'flex',
