@@ -17,7 +17,6 @@ export default function shopForKids() {
           </Typography>
         </Box>
         <Grid container sx={styles.container}>
-        <Hidden mdDown>
           <Grid item xs={3} sx={styles.filterContainer}>
             <Typography variant="h6" gutterBottom>
               Shop By
@@ -60,9 +59,8 @@ export default function shopForKids() {
             />
             <Divider sx={styles.filterDivider} />
           </Grid>
-          </Hidden>
           <Grid
-            sm={12}
+            // sm={12}
             md={9}
             sx={styles.productContainer}
             justifyContent="flex-end"
@@ -90,8 +88,8 @@ const styles = {
     marginTop: 5,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "56%",
-    height: 190,
+    width: "56vw",
+    height: "20vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -108,6 +106,7 @@ const styles = {
   filterContainer: {
     paddingRight: 4,
     // borderRight: "1px solid #ccc",
+    display: { xs: "none", md: "block" },
   },
   productContainer: {
     // paddingLeft: 4,
