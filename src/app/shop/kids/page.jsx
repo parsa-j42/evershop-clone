@@ -1,5 +1,5 @@
 "use client";
-import { ThemeProvider, Typography, Box, Grid, Slider, Divider, Hidden, Container } from "@mui/material";
+import { ThemeProvider, Typography, Box, Grid, Slider, Divider, Hidden, Container, useMediaQuery } from "@mui/material";
 import { theme } from "../../utils/theme";
 import AppNavBar from "../../components/staticComponents/AppNavBar/AppNavBar";
 import AppFooter from "../../components/staticComponents/AppFooter/AppFooter";
@@ -11,12 +11,15 @@ export default function shopForKids() {
     <ThemeProvider theme={theme}>
       <main className="min-h-screen flex-col items-center justify-between">
         <AppNavBar />
+        <Grid container sx={styles.container}>
+        <Grid item xs={12}>
         <Box sx={styles.titleBox}>
-          <Typography variant="h4" color="white" align="center" sx={{ ml: 8 }}>
+        <Typography variant="h4" color="white" align="center" sx={{ ml: 8 }}>
             KIDS
           </Typography>
-        </Box>
-        <Grid container sx={styles.container}>
+          </Box>
+
+          </Grid>
           <Grid item xs={3} sx={styles.filterContainer}>
             <Typography variant="h6" gutterBottom>
               Shop By
@@ -86,9 +89,10 @@ const styles = {
   titleBox: {
     bgcolor: "#695F58",
     marginTop: 5,
+    marginBottom: 2,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "56vw",
+    // width: "56vw",
     height: "20vh",
     display: "flex",
     flexDirection: "column",
@@ -100,7 +104,10 @@ const styles = {
     marginTop: 5,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "56%",
+    width: "56vw",
+    '@media (max-width: 600px)': {
+      width: '90vw',
+    },
     flexGrow: 1,
   },
   filterContainer: {
