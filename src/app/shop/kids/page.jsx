@@ -1,5 +1,5 @@
 "use client";
-import { ThemeProvider, Typography, Box, Grid, Slider, Divider, Hidden, Container, useMediaQuery } from "@mui/material";
+import { ThemeProvider, useTheme, Typography, Box, Grid, Slider, Divider, Hidden, Container, useMediaQuery } from "@mui/material";
 import { theme } from "../../utils/theme";
 import AppNavBar from "../../components/staticComponents/AppNavBar/AppNavBar";
 import AppFooter from "../../components/staticComponents/AppFooter/AppFooter";
@@ -62,20 +62,18 @@ export default function shopForKids() {
             />
             <Divider sx={styles.filterDivider} />
           </Grid>
-          <Grid
-            // sm={12}
+          <Grid item
+            sm={12}
             md={9}
             sx={styles.productContainer}
             justifyContent="flex-end"
           >
-            <Container>
             <DropDownSelect
               title="Sort By"
               options={sortByOptions}
               color="neutral"
               sx={styles.DropDownSelect}
             />
-            </Container>
             <ProductsList products={products} />
           </Grid>
         </Grid>
@@ -98,15 +96,22 @@ const styles = {
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
-    textAlign: "left",
+    textAlign: "left",    width: "56vw",
+    // '@media (max-width: 600px)': {
+    //   width: '90vw',
+    // },
+    [theme.breakpoints.down('sm')]: {
+      width: "80vw",}
   },
   container: {
     marginTop: 5,
     marginLeft: "auto",
     marginRight: "auto",
     width: "56vw",
-    '@media (max-width: 600px)': {
-      width: '90vw',
+    // '@media (max-width: 600px)': {
+    //   width: '90vw',
+    [theme.breakpoints.down('sm')]: {
+      width: "80vw",
     },
     flexGrow: 1,
   },
@@ -117,7 +122,9 @@ const styles = {
   },
   productContainer: {
     // paddingLeft: 4,
-  },
+    justifyContent: "center",
+    textAlign: "center",
+ },
   filterDivider: {
     borderBottom: "1px solid #BDBDBD",
     width: "100%",
