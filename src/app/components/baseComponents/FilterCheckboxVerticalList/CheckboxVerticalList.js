@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
-export default function CheckboxVerticalList({items, color}) {
-  const [selectedItems, setSelectedItems] = useState([]);
-
+export default function CheckboxVerticalList({items, color, selectedItems, setSelectedItems}) {
   const handleItemChange = (event) => {
     const checked = event.target.checked;
     const value = event.target.value;

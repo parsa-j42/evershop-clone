@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { FilterList } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useMemo, memo, useEffect } from "react";
 
 import { theme } from "../../utils/theme";
 import AppNavBar from "../../components/staticComponents/AppNavBar/AppNavBar";
@@ -27,6 +27,27 @@ export default function shopForKids() {
   const handleFiltersModal = () => {
     setIsFiltersModalOpen(!isFiltersModalOpen);
   };
+
+  const [selectedPriceRange, setSelectedPriceRange] = useState([10, 999]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    const filtered = products.filter((product) => {
+      const isInPriceRange = (product.price >= selectedPriceRange[0] && product.price <= selectedPriceRange[1]);
+      const hasSelectedColors = (selectedColors.length === 0 || selectedColors.includes(product.color));
+      // const hasSelectedSizes = (selectedSizes.length === 0 || selectedSizes.includes(product.size));
+      const hasSelectedBrands = (selectedBrands.length === 0 || selectedBrands.includes(product.brand));
+      return (isInPriceRange && hasSelectedColors && hasSelectedBrands);
+    });
+    setFilteredProducts(filtered);
+  }, [selectedPriceRange, selectedColors, selectedSizes, selectedBrands]);
+  
+  useEffect(() => {
+    console.log("filteredProducts changed:", filteredProducts);
+  }, [filteredProducts]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -57,6 +78,7 @@ export default function shopForKids() {
               defaultValue={[10, 999]}
               aria-labelledby="price-range-slider"
               valueLabelDisplay="auto"
+              onChange={(event, value) => setSelectedPriceRange(value)}
               min={10}
               max={999}
             />
@@ -67,6 +89,8 @@ export default function shopForKids() {
             <FilterCheckboxVerticalList
               items={colorFilterOptions}
               color="neutral"
+              selectedItems={selectedColors}
+              setSelectedItems={setSelectedColors}
             />
             <Divider sx={styles.filterDivider} />
             <Typography variant="subtitle1" gutterBottom>
@@ -75,6 +99,8 @@ export default function shopForKids() {
             <FilterCheckboxVerticalList
               items={sizeFilterOptions}
               color="neutral"
+              selectedItems={selectedSizes}
+              // setSelectedItems={setSelectedSizes}
             />
             <Divider sx={styles.filterDivider} />
 
@@ -84,6 +110,8 @@ export default function shopForKids() {
             <FilterCheckboxVerticalList
               items={brandFilterOptions}
               color="neutral"
+              selectedItems={selectedBrands}
+              setSelectedItems={setSelectedBrands}
             />
             <Divider sx={styles.filterDivider} />
           </Grid>
@@ -100,7 +128,7 @@ export default function shopForKids() {
               color="neutral"
               sx={styles.DropDownSelect}
             />
-            <ProductsList products={products} />
+            <ProductsList products={filteredProducts.length == 0 ? products : filteredProducts} />
           </Grid>
         </Grid>
         {isSmallScreen && (
@@ -184,56 +212,78 @@ const products = [
   {
     name: "Continental 80 Shoes",
     price: "$126",
+    color: "Pink",
+    brand: null,
     img: require("../../../../public/continental.png"),
   },
   {
     name: "Nizza trefoil shoes",
     price: "$198",
+    color: "White",
+    brand: null,
     img: require("../../../../public/nizza.png"),
   },
   {
     name: "Nmd_r1 shoes",
     price: "$193",
+    color: "Green",
+    brand: null,
     img: require("../../../../public/nmd.png"),
   },
   {
     name: "Canvas platform chuck taylor all star",
     price: "$691",
+    color: "Black",
+    brand: "Converse",
     img: require("../../../../public/canvasPlatform.png"),
   },
   {
     name: "Chuck taylor all star move",
     price: "$491",
+    color: "Pink",
+    brand: "Converse",
     img: require("../../../../public/chuckTaylor.png"),
   },
   {
     name: "Mix and match chuck taylor all star",
     price: "$798",
+    color: "Grey",
+    brand: "Converse",
     img: require("../../../../public/mixMatch.png"),
   },
   {
     name: "Seasonal color chuck 70",
     price: "$819",
+    color: "Purple",
+    brand: "Converse",
     img: require("../../../../public/seasonalColor.png"),
   },
   {
     name: "Nike court vision low",
     price: "$904",
+    color: "White",
+    brand: "Nike",
     img: require("../../../../public/nikeCourt.png"),
   },
   {
     name: "Nike react infinity run flyknit",
     price: "$543",
+    color: "Black",
+    brand: "Nike",
     img: require("../../../../public/nikeReact.png"),
   },
   {
     name: "Nike react phantom run flyknit 2",
     price: "$718",
+    color: "Pink",
+    brand: "Nike",
     img: require("../../../../public/nikePhantom.png"),
   },
   {
     name: "Nike react phantom run flyknit 2",
     price: "$718",
+    color: "Black",
+    brand: "Nike",
     img: require("../../../../public/nike3.png"),
   },
 ];

@@ -1,9 +1,9 @@
 import { Box, Grid, Card, CardActionArea, CardMedia, CardContent, Typography, Container } from "@mui/material";
-import zoomPegasusShoes from 'public/zoomPegasusShoes.png';
 import Image from 'next/image';
 import { theme } from "src/app/utils/theme.js";
 
 export default function Products({ products }) {
+  if (!products) { return }
   return (
     <Grid container spacing={2}>
       {products.map((product) => (
