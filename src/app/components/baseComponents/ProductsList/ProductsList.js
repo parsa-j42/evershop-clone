@@ -23,7 +23,7 @@ export default function Products({ products }) {
                   alignItems: "center"
                 }
               }}>
-                <Image src={product.img} alt={product.name} />
+                <Image src={product.img} alt={product.name} width="500" height="500"/>
               </CardMedia>
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">

@@ -1,0 +1,80 @@
+[
+    {
+      "name": "Continental 80 Shoes",
+      "price": "$126",
+      "color": "Pink",
+      "brand": null,
+      "img": "/continental.png"
+    },
+    {
+      "name": "Nizza trefoil shoes",
+      "price": "$198",
+      "color": "White",
+      "brand": null,
+      "img": "/nizza.png"
+    },
+    {
+      "name": "Nmd_r1 shoes",
+      "price": "$193",
+      "color": "Green",
+      "brand": null,
+      "img": "/nmd.png"
+    },
+    {
+      "name": "Canvas platform chuck taylor all star",
+      "price": "$691",
+      "color": "Black",
+      "brand": "Converse",
+      "img": "/canvasPlatform.png"
+    },
+    {
+      "name": "Chuck taylor all star move",
+      "price": "$491",
+      "color": "Pink",
+      "brand": "Converse",
+      "img": "/chuckTaylor.png"
+    },
+    {
+      "name": "Mix and match chuck taylor all star",
+      "price": "$798",
+      "color": "Grey",
+      "brand": "Converse",
+      "img": "/mixMatch.png"
+    },
+    {
+      "name": "Seasonal color chuck 70",
+      "price": "$819",
+      "color": "Purple",
+      "brand": "Converse",
+      "img": "/seasonalColor.png"
+    },
+    {
+      "name": "Nike court vision low",
+      "price": "$904",
+      "color": "White",
+      "brand": "Nike",
+      "img": "/nikeCourt.png"
+    },
+    {
+      "name": "Nike react infinity run flyknit",
+      "price": "$543",
+      "color": "Black",
+      "brand": "Nike",
+      "img": "/nikeReact.png"
+    },
+    {
+      "name": "Nike react phantom run flyknit 2",
+      "price": "$718",
+      "color": "Pink",
+      "brand": "Nike",
+      "img": "/nikePhantom.png"
+    },
+    {
+      "name": "Nike react phantom run flyknit 2",
+      "price": "$718",
+      "color": "Black",
+      "brand": "Nike",
+      "img": "/nike3.png"
+    }
+  ]
+  

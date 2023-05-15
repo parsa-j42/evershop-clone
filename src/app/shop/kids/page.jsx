@@ -19,6 +19,11 @@ import FilterCheckboxVerticalList from "../../components/baseComponents/FilterCh
 import ProductsList from "../../components/baseComponents/ProductsList/ProductsList";
 import DropDownSelect from "src/app/components/baseComponents/DropDownSelect/DropDownSelect.js";
 import FiltersModal from "../../components/baseComponents/FiltersModal/FiltersModal";
+import products from "./products.json"
+import colorFilterOptions from "./colorFilterOptions.json"
+import sizeFilterOptions from "./sizeFilterOptions.json"
+import brandFilterOptions from "./brandFilterOptions.json"
+import sortByOptions from "./sortByOptions.json"
 
 export default function shopForKids() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -196,94 +201,3 @@ const styles = {
   },
 };
 
-const colorFilterOptions = [
-  "White",
-  "Pink",
-  "Black",
-  "Green",
-  "Brown",
-  "Grey",
-  "Purple",
-];
-const sizeFilterOptions = ["XL", "L", "M", "S", "XS"];
-const brandFilterOptions = ["Nike", "Converse"];
-const sortByOptions = ["Price", "Name"];
-const products = [
-  {
-    name: "Continental 80 Shoes",
-    price: "$126",
-    color: "Pink",
-    brand: null,
-    img: require("../../../../public/continental.png"),
-  },
-  {
-    name: "Nizza trefoil shoes",
-    price: "$198",
-    color: "White",
-    brand: null,
-    img: require("../../../../public/nizza.png"),
-  },
-  {
-    name: "Nmd_r1 shoes",
-    price: "$193",
-    color: "Green",
-    brand: null,
-    img: require("../../../../public/nmd.png"),
-  },
-  {
-    name: "Canvas platform chuck taylor all star",
-    price: "$691",
-    color: "Black",
-    brand: "Converse",
-    img: require("../../../../public/canvasPlatform.png"),
-  },
-  {
-    name: "Chuck taylor all star move",
-    price: "$491",
-    color: "Pink",
-    brand: "Converse",
-    img: require("../../../../public/chuckTaylor.png"),
-  },
-  {
-    name: "Mix and match chuck taylor all star",
-    price: "$798",
-    color: "Grey",
-    brand: "Converse",
-    img: require("../../../../public/mixMatch.png"),
-  },
-  {
-    name: "Seasonal color chuck 70",
-    price: "$819",
-    color: "Purple",
-    brand: "Converse",
-    img: require("../../../../public/seasonalColor.png"),
-  },
-  {
-    name: "Nike court vision low",
-    price: "$904",
-    color: "White",
-    brand: "Nike",
-    img: require("../../../../public/nikeCourt.png"),
-  },
-  {
-    name: "Nike react infinity run flyknit",
-    price: "$543",
-    color: "Black",
-    brand: "Nike",
-    img: require("../../../../public/nikeReact.png"),
-  },
-  {
-    name: "Nike react phantom run flyknit 2",
-    price: "$718",
-    color: "Pink",
-    brand: "Nike",
-    img: require("../../../../public/nikePhantom.png"),
-  },
-  {
-    name: "Nike react phantom run flyknit 2",
-    price: "$718",
-    color: "Black",
-    brand: "Nike",
-    img: require("../../../../public/nike3.png"),
-  },
-];
