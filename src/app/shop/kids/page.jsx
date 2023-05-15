@@ -25,7 +25,7 @@ import sizeFilterOptions from "./sizeFilterOptions.json"
 import brandFilterOptions from "./brandFilterOptions.json"
 import sortByOptions from "./sortByOptions.json"
 
-export default function shopForKids() {
+export default function ShopForKids() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
