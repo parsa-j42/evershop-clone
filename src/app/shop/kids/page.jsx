@@ -1,24 +1,49 @@
 "use client";
-import { ThemeProvider, useTheme, Typography, Box, Grid, Slider, Divider, Hidden, Container, useMediaQuery } from "@mui/material";
+import {
+  ThemeProvider,
+  Typography,
+  Box,
+  Grid,
+  Slider,
+  Divider,
+  Fab,
+  useMediaQuery,
+} from "@mui/material";
+import { FilterList } from "@mui/icons-material";
+import { useState } from "react";
+
 import { theme } from "../../utils/theme";
 import AppNavBar from "../../components/staticComponents/AppNavBar/AppNavBar";
 import AppFooter from "../../components/staticComponents/AppFooter/AppFooter";
 import FilterCheckboxVerticalList from "../../components/baseComponents/FilterCheckboxVerticalList/CheckboxVerticalList";
 import ProductsList from "../../components/baseComponents/ProductsList/ProductsList";
 import DropDownSelect from "src/app/components/baseComponents/DropDownSelect/DropDownSelect.js";
+import FiltersModal from "../../components/baseComponents/FiltersModal/FiltersModal";
+
 export default function shopForKids() {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
+  const handleFiltersModal = () => {
+    setIsFiltersModalOpen(!isFiltersModalOpen);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <main className="min-h-screen flex-col items-center justify-between">
         <AppNavBar />
         <Grid container sx={styles.container}>
-        <Grid item xs={12}>
-        <Box sx={styles.titleBox}>
-        <Typography variant="h4" color="white" align="center" sx={{ ml: 8 }}>
-            KIDS
-          </Typography>
-          </Box>
-
+          <Grid item xs={12}>
+            <Box sx={styles.titleBox}>
+              <Typography
+                variant="h4"
+                color="white"
+                align="center"
+                sx={{ ml: 8 }}
+              >
+                KIDS
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={3} sx={styles.filterContainer}>
             <Typography variant="h6" gutterBottom>
@@ -62,7 +87,8 @@ export default function shopForKids() {
             />
             <Divider sx={styles.filterDivider} />
           </Grid>
-          <Grid item
+          <Grid
+            item
             sm={12}
             md={9}
             sx={styles.productContainer}
@@ -77,6 +103,21 @@ export default function shopForKids() {
             <ProductsList products={products} />
           </Grid>
         </Grid>
+        {isSmallScreen && (
+          <Fab
+            size="small"
+            color="primary"
+            aria-label="filter"
+            sx={{ position: "fixed", bottom: 16, left: 16 }}
+            onClick={handleFiltersModal}
+          >
+            <FilterList />
+          </Fab>
+        )}
+        <FiltersModal
+          isOpen={isFiltersModalOpen}
+          onClose={handleFiltersModal}
+        />
         <AppFooter />
       </main>
     </ThemeProvider>
@@ -95,17 +136,16 @@ const styles = {
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
-    textAlign: "left",    width: "56vw",
-    [theme.breakpoints.down('md')]: {
-      width: "80vw",}
+    textAlign: "left",
+    width: "100%",
   },
   container: {
     marginTop: 5,
     marginLeft: "auto",
     marginRight: "auto",
-    width: "56vw",
-    [theme.breakpoints.down('md')]: {
-      width: "80vw",
+    width: "1100px",
+    [theme.breakpoints.down("lg")]: {
+      width: "90vw",
     },
     flexGrow: 1,
   },
@@ -116,7 +156,7 @@ const styles = {
   productContainer: {
     justifyContent: "center",
     textAlign: "center",
- },
+  },
   filterDivider: {
     borderBottom: "1px solid #BDBDBD",
     width: "100%",
@@ -125,7 +165,6 @@ const styles = {
   DropDownSelect: {
     width: 180,
     marginBottom: 2,
-    
   },
 };
 
