@@ -9,7 +9,7 @@ export default function CheckboxVerticalList({items, color, selectedItems, setSe
     if (checked) {
       setSelectedItems([...selectedItems, value]);
     } else {
-=      setSelectedItems(selectedItems.filter((item) => item !== value));
+      setSelectedItems(selectedItems.filter((item) => item !== value));
     }
   };
   
