@@ -41,18 +41,21 @@ export default function ShopForKids() {
 
   useEffect(() => {
     const filtered = products.filter((product) => {
-      const isInPriceRange = (product.price >= selectedPriceRange[0] && product.price <= selectedPriceRange[1]);
-      const hasSelectedColors = (selectedColors.length === 0 || selectedColors.includes(product.color));
-      // const hasSelectedSizes = (selectedSizes.length === 0 || selectedSizes.includes(product.size));
-      const hasSelectedBrands = (selectedBrands.length === 0 || selectedBrands.includes(product.brand));
+      const price = +product.price.slice(1)
+      const color = product.color
+      const size = product.size
+      const brand = product.brand
+      const isInPriceRange = (price >= selectedPriceRange[0] && price <= selectedPriceRange[1]);
+      const hasSelectedColors = (selectedColors.length === 0 || selectedColors.includes(color));
+      const hasSelectedBrands = (selectedBrands.length === 0 || selectedBrands.includes(brand));
       return (isInPriceRange && hasSelectedColors && hasSelectedBrands);
     });
     setFilteredProducts(filtered);
   }, [selectedPriceRange, selectedColors, selectedSizes, selectedBrands]);
   
-  useEffect(() => {
-    console.log("filteredProducts changed:", filteredProducts);
-  }, [filteredProducts]);
+  // useEffect(() => {
+  //   console.log("filteredProducts changed:", filteredProducts);
+  // }, [filteredProducts]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -273,7 +276,7 @@ const products = [
     img: require("../../../../public/nikePhantom.png"),
   },
   {
-    name: "Nike react phantom run flyknit 2",
+    name: "Nike react phantom run flyknit 23",
     price: "$718",
     color: "Black",
     brand: "Nike",

@@ -5,14 +5,14 @@ export default function CheckboxVerticalList({items, color, selectedItems, setSe
   const handleItemChange = (event) => {
     const checked = event.target.checked;
     const value = event.target.value;
-
+  
     if (checked) {
       setSelectedItems([...selectedItems, value]);
     } else {
-      setSelectedItems(selectedItems.filter((item) => item !== value));
+=      setSelectedItems(selectedItems.filter((item) => item !== value));
     }
   };
-
+  
   return (
     <FormGroup>
       {items.map((item) => (

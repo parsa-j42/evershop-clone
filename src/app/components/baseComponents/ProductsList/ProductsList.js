@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { theme } from "src/app/utils/theme.js";
 
 export default function Products({ products }) {
-  if (!products) { return }
+  if (!products) { return null }
   return (
     <Grid container spacing={2}>
       {products.map((product) => (
