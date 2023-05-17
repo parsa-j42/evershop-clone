@@ -1,7 +1,12 @@
 import { Modal, Box, Divider, Slider, Typography } from "@mui/material";
 import FilterCheckboxVerticalList from "../FilterCheckboxVerticalList/CheckboxVerticalList";
+import ProductsFilter from "src/app/components/staticComponents/ProductsFilter/ProductsFilter";
 
-export default function FiltersModal({ isOpen, onClose }) {
+export default function FiltersModal({ isOpen, onClose,
+  colorFilterOptions, selectedColors, setSelectedColors,
+  sizeFilterOptions, selectedSizes, setSelectedSizes,
+  brandFilterOptions, selectedBrands, setSelectedBrands,
+  selectedPriceRange, setSelectedPriceRange }) {
   const handleClose = () => {
     onClose();
   };
@@ -26,46 +31,13 @@ export default function FiltersModal({ isOpen, onClose }) {
         maxHeight: '80vh',
         overflowY: 'auto'
       }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Price
-        </Typography>
-        <Slider
-          color="neutral"
-          defaultValue={[10, 999]}
-          aria-labelledby="price-range-slider"
-          valueLabelDisplay="auto"
-          min={10}
-          max={999}
+        <ProductsFilter
+          colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
+          sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
+          brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands}
+          selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
         />
-        <Divider />
-        <Typography variant="subtitle1" gutterBottom>
-          Color
-        </Typography>
-        <FilterCheckboxVerticalList items={colorFilterOptions} color="neutral" />
-        <Divider />
-        <Typography variant="subtitle1" gutterBottom>
-          Size
-        </Typography>
-        <FilterCheckboxVerticalList items={sizeFilterOptions} color="neutral" />
-        <Divider />
-        <Typography variant="subtitle1" gutterBottom>
-          Brand
-        </Typography>
-        <FilterCheckboxVerticalList items={brandFilterOptions} color="neutral" />
-        <Divider />
       </Box>
     </Modal>
   );
 }
-const colorFilterOptions = [
-  "White",
-  "Pink",
-  "Black",
-  "Green",
-  "Brown",
-  "Grey",
-  "Purple",
-];
-const sizeFilterOptions = ["XL", "L", "M", "S", "XS"];
-const brandFilterOptions = ["Nike", "Converse"];
-const sortByOptions = ["Price", "Name"];

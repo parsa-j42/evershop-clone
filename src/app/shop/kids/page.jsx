@@ -20,11 +20,11 @@ import ProductsList from "../../components/baseComponents/ProductsList/ProductsL
 import DropDownSelect from "src/app/components/baseComponents/DropDownSelect/DropDownSelect.js";
 import FiltersModal from "../../components/baseComponents/FiltersModal/FiltersModal";
 // import products from "./products.json"
-import colorFilterOptions from "./colorFilterOptions.json"
-import sizeFilterOptions from "./sizeFilterOptions.json"
-import brandFilterOptions from "./brandFilterOptions.json"
-import sortByOptions from "./sortByOptions.json"
-
+import colorFilterOptions from "./colorFilterOptions.json";
+import sizeFilterOptions from "./sizeFilterOptions.json";
+import brandFilterOptions from "./brandFilterOptions.json";
+import sortByOptions from "./sortByOptions.json";
+import ProductsFilter from "src/app/components/staticComponents/ProductsFilter/ProductsFilter";
 export default function ShopForKids() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -41,18 +41,21 @@ export default function ShopForKids() {
 
   useEffect(() => {
     const filtered = products.filter((product) => {
-      const price = +product.price.slice(1)
-      const color = product.color
-      const size = product.size
-      const brand = product.brand
-      const isInPriceRange = (price >= selectedPriceRange[0] && price <= selectedPriceRange[1]);
-      const hasSelectedColors = (selectedColors.length === 0 || selectedColors.includes(color));
-      const hasSelectedBrands = (selectedBrands.length === 0 || selectedBrands.includes(brand));
-      return (isInPriceRange && hasSelectedColors && hasSelectedBrands);
+      const price = +product.price.slice(1);
+      const color = product.color;
+      const size = product.size;
+      const brand = product.brand;
+      const isInPriceRange =
+        price >= selectedPriceRange[0] && price <= selectedPriceRange[1];
+      const hasSelectedColors =
+        selectedColors.length === 0 || selectedColors.includes(color);
+      const hasSelectedBrands =
+        selectedBrands.length === 0 || selectedBrands.includes(brand);
+      return isInPriceRange && hasSelectedColors && hasSelectedBrands;
     });
     setFilteredProducts(filtered);
   }, [selectedPriceRange, selectedColors, selectedSizes, selectedBrands]);
-  
+
   // useEffect(() => {
   //   console.log("filteredProducts changed:", filteredProducts);
   // }, [filteredProducts]);
@@ -78,50 +81,12 @@ export default function ShopForKids() {
             <Typography variant="h6" gutterBottom>
               Shop By
             </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              Price
-            </Typography>
-            <Slider
-              color="neutral"
-              defaultValue={[10, 999]}
-              aria-labelledby="price-range-slider"
-              valueLabelDisplay="auto"
-              onChange={(event, value) => setSelectedPriceRange(value)}
-              min={10}
-              max={999}
+            <ProductsFilter
+              colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
+              sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
+              brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands}setSelectedBrands={setSelectedBrands}
+              selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
             />
-            <Divider sx={styles.filterDivider} />
-            <Typography variant="subtitle1" gutterBottom>
-              Color
-            </Typography>
-            <FilterCheckboxVerticalList
-              items={colorFilterOptions}
-              color="neutral"
-              selectedItems={selectedColors}
-              setSelectedItems={setSelectedColors}
-            />
-            <Divider sx={styles.filterDivider} />
-            <Typography variant="subtitle1" gutterBottom>
-              Size
-            </Typography>
-            <FilterCheckboxVerticalList
-              items={sizeFilterOptions}
-              color="neutral"
-              selectedItems={selectedSizes}
-              // setSelectedItems={setSelectedSizes}
-            />
-            <Divider sx={styles.filterDivider} />
-
-            <Typography variant="subtitle1" gutterBottom>
-              Brand
-            </Typography>
-            <FilterCheckboxVerticalList
-              items={brandFilterOptions}
-              color="neutral"
-              selectedItems={selectedBrands}
-              setSelectedItems={setSelectedBrands}
-            />
-            <Divider sx={styles.filterDivider} />
           </Grid>
           <Grid
             item
@@ -136,7 +101,11 @@ export default function ShopForKids() {
               color="neutral"
               sx={styles.DropDownSelect}
             />
-            <ProductsList products={filteredProducts.length == 0 ? products : filteredProducts} />
+            <ProductsList
+              products={
+                filteredProducts.length == 0 ? products : filteredProducts
+              }
+            />
           </Grid>
         </Grid>
         {isSmallScreen && (
@@ -153,6 +122,10 @@ export default function ShopForKids() {
         <FiltersModal
           isOpen={isFiltersModalOpen}
           onClose={handleFiltersModal}
+          colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
+          sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
+          brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands}setSelectedBrands={setSelectedBrands}
+          selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
         />
         <AppFooter />
       </main>

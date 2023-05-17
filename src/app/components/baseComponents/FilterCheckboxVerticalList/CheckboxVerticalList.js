@@ -15,7 +15,7 @@ export default function CheckboxVerticalList({items, color, selectedItems, setSe
   
   return (
     <FormGroup>
-      {items.map((item) => (
+      {items.map((item) => ( 
         <FormControlLabel
           key={item}
           control={
