@@ -2,19 +2,11 @@ import { Modal, Box, Divider, Slider, Typography } from "@mui/material";
 import FilterCheckboxVerticalList from "../FilterCheckboxVerticalList/CheckboxVerticalList";
 import ProductsFilter from "src/app/components/staticComponents/ProductsFilter/ProductsFilter";
 
-export default function FiltersModal({ isOpen, onClose,
-  colorFilterOptions, selectedColors, setSelectedColors,
-  sizeFilterOptions, selectedSizes, setSelectedSizes,
-  brandFilterOptions, selectedBrands, setSelectedBrands,
-  selectedPriceRange, setSelectedPriceRange }) {
-  const handleClose = () => {
-    onClose();
-  };
-
+export default function FiltersModal(props) {
   return (
     <Modal
-      open={isOpen}
-      onClose={handleClose}
+      open={props.isOpen}
+      onClose={props.onClose}
       aria-labelledby="filters-modal-title"
       aria-describedby="filters-modal-description"
     >
@@ -32,10 +24,10 @@ export default function FiltersModal({ isOpen, onClose,
         overflowY: 'auto'
       }}>
         <ProductsFilter
-          colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
-          sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
-          brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands} setSelectedBrands={setSelectedBrands}
-          selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
+          colorFilterOptions={props.colorFilterOptions} selectedColors={props.selectedColors} setSelectedColors={props.setSelectedColors}
+          sizeFilterOptions={props.sizeFilterOptions} selectedSizes={props.selectedSizes} setSelectedSizes={props.setSelectedSizes}
+          brandFilterOptions={props.brandFilterOptions} selectedBrands={props.selectedBrands} setSelectedBrands={props.setSelectedBrands}
+          selectedPriceRange={props.selectedPriceRange} setSelectedPriceRange={props.setSelectedPriceRange}
         />
       </Box>
     </Modal>

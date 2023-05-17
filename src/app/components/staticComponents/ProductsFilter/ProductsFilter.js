@@ -2,11 +2,7 @@ import { Box, Typography, Slider, Divider } from "@mui/material";
 import FilterCheckboxVerticalList from "src/app/components/baseComponents/FilterCheckboxVerticalList/CheckboxVerticalList";
 
 
-export default function ProductsFilter({
-    colorFilterOptions, selectedColors, setSelectedColors,
-    sizeFilterOptions, selectedSizes, setSelectedSizes,
-    brandFilterOptions, selectedBrands, setSelectedBrands,
-    selectedPriceRange, setSelectedPriceRange }) {
+export default function ProductsFilter(props) {
     return (
         <Box>
             <Typography variant="subtitle1" gutterBottom>
@@ -17,8 +13,8 @@ export default function ProductsFilter({
                 defaultValue={[10, 999]}
                 aria-labelledby="price-range-slider"
                 valueLabelDisplay="auto"
-                value={selectedPriceRange}
-                onChange={(event, value) => setSelectedPriceRange(value)}
+                value={props.selectedPriceRange}
+                onChange={(event, value) => props.setSelectedPriceRange(value)}
                 min={10}
                 max={999}
             />
@@ -27,20 +23,20 @@ export default function ProductsFilter({
                 Color
             </Typography>
             <FilterCheckboxVerticalList
-                items={colorFilterOptions}
+                items={props.colorFilterOptions}
                 color="neutral"
-                selectedItems={selectedColors}
-                setSelectedItems={setSelectedColors}
+                selectedItems={props.selectedColors}
+                setSelectedItems={props.setSelectedColors}
             />
             <Divider sx={styles.filterDivider} />
             <Typography variant="subtitle1" gutterBottom>
                 Size
             </Typography>
             <FilterCheckboxVerticalList
-                items={sizeFilterOptions}
+                items={props.sizeFilterOptions}
                 color="neutral"
-                selectedItems={selectedSizes}
-            // setSelectedItems={setSelectedSizes}
+                selectedItems={props.selectedSizes}
+            // setSelectedItems={props.setSelectedSizes}
             />
             <Divider sx={styles.filterDivider} />
 
@@ -48,10 +44,10 @@ export default function ProductsFilter({
                 Brand
             </Typography>
             <FilterCheckboxVerticalList
-                items={brandFilterOptions}
+                items={props.brandFilterOptions}
                 color="neutral"
-                selectedItems={selectedBrands}
-                setSelectedItems={setSelectedBrands}
+                selectedItems={props.selectedBrands}
+                setSelectedItems={props.setSelectedBrands}
             />
             <Divider sx={styles.filterDivider} />
 
