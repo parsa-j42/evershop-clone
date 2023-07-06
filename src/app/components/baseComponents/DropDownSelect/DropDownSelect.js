@@ -5,9 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function DropDownSelect({title, options, color,sx}) {
-  const [option, setOption] = React.useState('');
-
+export default function DropDownSelect({option, setOption, title, options, color, sx}) {
   const handleChange = (event) => {
     setOption(event.target.value);
   };
@@ -29,7 +27,7 @@ export default function DropDownSelect({title, options, color,sx}) {
               color={color}
             >{option}</MenuItem>
       ))}
-      <MenuItem color={color}>None</MenuItem>
+      {/* <MenuItem value={null} color={color}>None</MenuItem> */}
         </Select>
       </FormControl>
     </Box>

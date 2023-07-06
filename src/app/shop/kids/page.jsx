@@ -26,6 +26,22 @@ import brandFilterOptions from "./brandFilterOptions.json";
 import sortByOptions from "./sortByOptions.json";
 import ProductsFilter from "src/app/components/staticComponents/ProductsFilter/ProductsFilter";
 export default function ShopForKids() {
+  function sortArray(array, sortBy) {
+    array.sort((a, b) => {
+      if (a[sortBy] < b[sortBy]) {
+        return -1;
+      } else if (a[sortBy] > b[sortBy]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    // console.log(x)
+    // console.log(array[0]["name"])
+    // console.log(sortBy)
+    // console.log(array[0][sortBy])
+  }
+
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [isFiltersModalOpen, setIsFiltersModalOpen] = useState(false);
@@ -38,27 +54,38 @@ export default function ShopForKids() {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedSortByOption, setSelectedSortByOption] = useState("name");
+  const [sortedProducts, setSortedProducts] = useState(products);
 
   useEffect(() => {
     const filtered = products.filter((product) => {
-      const price = +product.price.slice(1);
+      const price = +product.price;
       const color = product.color;
       const size = product.size;
       const brand = product.brand;
+
       const isInPriceRange =
         price >= selectedPriceRange[0] && price <= selectedPriceRange[1];
       const hasSelectedColors =
         selectedColors.length === 0 || selectedColors.includes(color);
       const hasSelectedBrands =
         selectedBrands.length === 0 || selectedBrands.includes(brand);
+
       return isInPriceRange && hasSelectedColors && hasSelectedBrands;
     });
-    setFilteredProducts(filtered);
+    if (filtered.length == 0) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(filtered);
+    }
   }, [selectedPriceRange, selectedColors, selectedSizes, selectedBrands]);
 
-  // useEffect(() => {
-  //   console.log("filteredProducts changed:", filteredProducts);
-  // }, [filteredProducts]);
+  useEffect(() => {
+    setSortedProducts(filteredProducts);
+    sortArray(filteredProducts, selectedSortByOption)
+    console.log("hi", sortedProducts);
+    console.log(selectedSortByOption);
+  }, [selectedSortByOption, filteredProducts]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,10 +109,17 @@ export default function ShopForKids() {
               Shop By
             </Typography>
             <ProductsFilter
-              colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
-              sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
-              brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands}setSelectedBrands={setSelectedBrands}
-              selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
+              colorFilterOptions={colorFilterOptions}
+              selectedColors={selectedColors}
+              setSelectedColors={setSelectedColors}
+              sizeFilterOptions={sizeFilterOptions}
+              selectedSizes={selectedSizes}
+              setSelectedSizes={setSelectedSizes}
+              brandFilterOptions={brandFilterOptions}
+              selectedBrands={selectedBrands}
+              setSelectedBrands={setSelectedBrands}
+              selectedPriceRange={selectedPriceRange}
+              setSelectedPriceRange={setSelectedPriceRange}
             />
           </Grid>
           <Grid
@@ -96,16 +130,14 @@ export default function ShopForKids() {
             justifyContent="flex-end"
           >
             <DropDownSelect
+              option={selectedSortByOption}
+              setOption={setSelectedSortByOption}
               title="Sort By"
               options={sortByOptions}
               color="neutral"
               sx={styles.DropDownSelect}
             />
-            <ProductsList
-              products={
-                filteredProducts.length == 0 ? products : filteredProducts
-              }
-            />
+            <ProductsList products={sortedProducts} />
           </Grid>
         </Grid>
         {isSmallScreen && (
@@ -122,10 +154,17 @@ export default function ShopForKids() {
         <FiltersModal
           isOpen={isFiltersModalOpen}
           onClose={handleFiltersModal}
-          colorFilterOptions={colorFilterOptions} selectedColors={selectedColors} setSelectedColors={setSelectedColors}
-          sizeFilterOptions={sizeFilterOptions} selectedSizes={selectedSizes} setSelectedSizes={setSelectedSizes}
-          brandFilterOptions={brandFilterOptions} selectedBrands={selectedBrands}setSelectedBrands={setSelectedBrands}
-          selectedPriceRange={selectedPriceRange} setSelectedPriceRange={setSelectedPriceRange}
+          colorFilterOptions={colorFilterOptions}
+          selectedColors={selectedColors}
+          setSelectedColors={setSelectedColors}
+          sizeFilterOptions={sizeFilterOptions}
+          selectedSizes={selectedSizes}
+          setSelectedSizes={setSelectedSizes}
+          brandFilterOptions={brandFilterOptions}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
+          selectedPriceRange={selectedPriceRange}
+          setSelectedPriceRange={setSelectedPriceRange}
         />
         <AppFooter />
       </main>
@@ -180,77 +219,77 @@ const styles = {
 const products = [
   {
     name: "Continental 80 Shoes",
-    price: "$126",
+    price: "126",
     color: "Pink",
     brand: null,
     img: require("../../../../public/continental.png"),
   },
   {
     name: "Nizza trefoil shoes",
-    price: "$198",
+    price: "198",
     color: "White",
     brand: null,
     img: require("../../../../public/nizza.png"),
   },
   {
     name: "Nmd_r1 shoes",
-    price: "$193",
+    price: "193",
     color: "Green",
     brand: null,
     img: require("../../../../public/nmd.png"),
   },
   {
     name: "Canvas platform chuck taylor all star",
-    price: "$691",
+    price: "691",
     color: "Black",
     brand: "Converse",
     img: require("../../../../public/canvasPlatform.png"),
   },
   {
     name: "Chuck taylor all star move",
-    price: "$491",
+    price: "491",
     color: "Pink",
     brand: "Converse",
     img: require("../../../../public/chuckTaylor.png"),
   },
   {
     name: "Mix and match chuck taylor all star",
-    price: "$798",
+    price: "798",
     color: "Grey",
     brand: "Converse",
     img: require("../../../../public/mixMatch.png"),
   },
   {
     name: "Seasonal color chuck 70",
-    price: "$819",
+    price: "819",
     color: "Purple",
     brand: "Converse",
     img: require("../../../../public/seasonalColor.png"),
   },
   {
     name: "Nike court vision low",
-    price: "$904",
+    price: "904",
     color: "White",
     brand: "Nike",
     img: require("../../../../public/nikeCourt.png"),
   },
   {
     name: "Nike react infinity run flyknit",
-    price: "$543",
+    price: "543",
     color: "Black",
     brand: "Nike",
     img: require("../../../../public/nikeReact.png"),
   },
   {
     name: "Nike react phantom run flyknit 2",
-    price: "$718",
+    price: "718",
     color: "Pink",
     brand: "Nike",
     img: require("../../../../public/nikePhantom.png"),
   },
   {
     name: "Nike react phantom run flyknit 23",
-    price: "$718",
+    price: "718",
     color: "Black",
     brand: "Nike",
     img: require("../../../../public/nike3.png"),

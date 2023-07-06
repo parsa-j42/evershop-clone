@@ -30,7 +30,7 @@ export default function Products({ products }) {
                   {product.name}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                  {product.price}
+                ${product.price}
                 </Typography>
               </CardContent>
             </CardActionArea>
